@@ -1,0 +1,399 @@
+/* Импорт шрифта */
+@font-face {
+  font-family: 'Supercell-Magic';
+  src: url('https://fonts.cdnfonts.com/css/supercell-magic') format('woff2');
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Supercell-Magic', 'Segoe UI', sans-serif;
+  user-select: none;
+}
+
+body {
+  background: #1d2f32;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 15px;
+}
+
+.game-wrapper {
+  max-width: 1400px;
+  width: 100%;
+}
+
+.arena {
+  display: grid;
+  grid-template-columns: repeat(32, 1fr);
+  grid-template-rows: repeat(18, 1fr);
+  aspect-ratio: 32 / 18;
+  background: #3f9047;
+  border: 6px solid #b48c4c;
+  border-radius: 40px;
+  position: relative;
+  box-shadow: 0 18px 0 #64451f;
+}
+
+.cell {
+  border: 1px solid rgba(255, 235, 150, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff8e0;
+  font-size: 12px;
+  text-shadow: 1px 1px 2px black;
+  cursor: pointer;
+  transition: 0.05s;
+  position: relative;
+}
+
+.cell:hover {
+  background: rgba(255, 255, 180, 0.4);
+  border: 2px solid #ffffaa;
+  z-index: 30;
+}
+
+.cell.placed {
+  background: #4fb05be0;
+  border: 3px solid #ffffa0;
+  z-index: 25;
+}
+
+.bridge-left, .bridge-right {
+  background: #cf9f4e;
+  border: 4px solid #ffd982;
+  box-shadow: inset 0 -8px 0 #94682b;
+}
+
+.spawn-cell {
+  background: #d54a4acc;
+  border: 4px solid #ffa0a0;
+  z-index: 40;
+}
+
+.path-marker {
+  background: rgba(255, 140, 140, 0.25);
+  border: 2px dashed #ff8a8a;
+  z-index: 35;
+}
+
+.tesla-range {
+  background: rgba(0, 255, 255, 0.15);
+  border: 2px solid rgba(0, 255, 255, 0.5);
+}
+
+.hog-killer {
+  border: 4px solid gold;
+  animation: glow 1.5s infinite;
+}
+
+@keyframes glow {
+  0% { border-color: gold; }
+  50% { border-color: orange; }
+  100% { border-color: gold; }
+}
+
+/* Башни */
+.king-tower {
+  grid-area: 16 / 14 / 19 / 20;
+  background: #e0b563;
+  border: 7px solid #ffda7c;
+  border-radius: 70px 70px 30px 30px;
+  box-shadow: 0 18px 0 #8b632b;
+  font-size: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff8cf;
+  pointer-events: none;
+  z-index: 20;
+}
+
+.princess-left {
+  grid-area: 13 / 6 / 16 / 9;
+  background: #e0b563;
+  border: 6px solid #ffda7c;
+  border-radius: 50px 50px 20px 20px;
+  box-shadow: 0 15px 0 #8b632b;
+  font-size: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff8cf;
+  pointer-events: none;
+  z-index: 20;
+}
+
+.princess-right {
+  grid-area: 13 / 25 / 16 / 28;
+  background: #e0b563;
+  border: 6px solid #ffda7c;
+  border-radius: 50px 50px 20px 20px;
+  box-shadow: 0 15px 0 #8b632b;
+  font-size: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff8cf;
+  pointer-events: none;
+  z-index: 20;
+}
+
+.tower-hp-bar {
+  width: 80%;
+  height: 8px;
+  background: #333;
+  border-radius: 4px;
+  margin: 2px 0;
+  overflow: hidden;
+}
+
+.tower-hp-fill {
+  height: 100%;
+  background: #4caf50;
+  transition: width 0.3s;
+}
+
+.tower-hp-fill.danger {
+  background: #f44336;
+}
+
+/* Зона врагов */
+.enemy-zone {
+  background: #26200cdd;
+  border-radius: 60px;
+  padding: 15px 20px;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 20px 0 15px;
+  border: 5px solid #ecbc5a;
+}
+
+.enemy-card {
+  background: #6f3d3d;
+  border-radius: 50px;
+  padding: 8px 24px;
+  border: 5px solid #f8b551;
+  color: white;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  box-shadow: 0 9px 0 #4e2525;
+}
+
+.hp-badge {
+  background: #b94646;
+  border-radius: 40px;
+  padding: 4px 18px;
+}
+
+/* Панель колоды */
+.deck-panel {
+  background: #1e414f;
+  border-radius: 80px;
+  padding: 20px;
+  border: 7px solid #e9bb58;
+  margin: 20px 0;
+}
+
+.cards-row {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card {
+  background: #3d7945;
+  border-radius: 60px;
+  padding: 8px 22px;
+  border: 5px solid #f7c55e;
+  color: white;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  box-shadow: 0 10px 0 #235f2b;
+  transition: all 0.2s;
+}
+
+.card.selected {
+  border: 8px solid #fff3a5;
+  background: #529e5e;
+  transform: translateY(-3px);
+  box-shadow: 0 13px 0 #1b7226;
+}
+
+.card.ranged {
+  border-color: #ffaa00;
+  background: #4d8f5a;
+}
+
+.card.used {
+  opacity: 0.5;
+  filter: grayscale(50%);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.card.swarm {
+  border-color: #ff9900;
+  background: #5a8f4d;
+}
+
+.card.killer {
+  border-color: gold;
+  box-shadow: 0 0 15px gold;
+}
+
+.elixir {
+  background: #d797ff;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  color: #28004b;
+  font-weight: 900;
+  border: 3px solid white;
+}
+
+/* Панель управления */
+.control-panel {
+  background: #1e3a45;
+  border-radius: 80px;
+  padding: 15px 25px;
+  border: 6px solid #d8aa4d;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: center;
+}
+
+.diff-group {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  background: #10313b;
+  padding: 12px;
+  border-radius: 70px;
+}
+
+.diff-btn {
+  background: #226177;
+  border: none;
+  color: white;
+  font-size: 16px;
+  padding: 8px 18px;
+  border-radius: 50px;
+  border-bottom: 5px solid #0d3c49;
+  cursor: pointer;
+}
+
+.diff-btn.active {
+  background: #f7b129;
+  color: #132b33;
+  border-bottom-color: #a86100;
+}
+
+.info-box {
+  background: #1d414b;
+  border-radius: 50px;
+  padding: 10px 24px;
+  color: #ffe085;
+  font-size: 18px;
+  flex: 1;
+  border: 4px solid #be974d;
+}
+
+.reset-btn {
+  background: #c65353;
+  border: none;
+  color: white;
+  font-size: 22px;
+  padding: 10px 35px;
+  border-radius: 70px;
+  border-bottom: 8px solid #722b2b;
+  cursor: pointer;
+}
+
+.message-bar {
+  margin-top: 15px;
+  background: #1e3f46;
+  border-radius: 70px;
+  padding: 12px 20px;
+  color: #ffe68f;
+  font-size: 20px;
+  text-align: center;
+  border: 5px solid #c19f4e;
+}
+
+/* Попап */
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #263f4a;
+  border: 10px solid #f5cf74;
+  border-radius: 90px;
+  padding: 45px 80px;
+  font-size: 80px;
+  font-weight: bold;
+  z-index: 200;
+  box-shadow: 0 25px 0 #0e2029;
+  display: none;
+  flex-direction: column;
+  gap: 35px;
+  align-items: center;
+}
+
+.popup.show { display: flex; }
+.popup-message { color: #fffed1; }
+.popup-sub { font-size: 30px; color: #ffd571; }
+.popup-button {
+  background: #ddb048;
+  border: none;
+  font-size: 40px;
+  padding: 18px 50px;
+  border-radius: 110px;
+  border-bottom: 9px solid #9f761d;
+  cursor: pointer;
+  color: #1f2c31;
+  font-weight: bold;
+}
+
+.unit-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0,0,0,0.7);
+  color: white;
+  font-size: 9px;
+  padding: 2px;
+  border-radius: 0 0 4px 4px;
+  text-align: center;
+}
+
+.badge {
+  background: gold;
+  color: black;
+  border-radius: 20px;
+  padding: 2px 8px;
+  font-size: 12px;
+  font-weight: bold;
+}

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тактические приёмы в игре Clash Royale: Выбор режима</title>
+    <style>
+        body {
+            background: #1d2f32;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        .menu {
+            text-align: center;
+            background: #2c3e50;
+            padding: 40px;
+            border-radius: 60px;
+            border: 5px solid #e9bb58;
+            box-shadow: 0 20px 0 #1a2c33;
+        }
+        h1 {
+            color: #ffe085;
+            font-size: 38px;
+            margin-bottom: 40px;
+            text-shadow: 3px 3px 0 #a86100;
+        }
+        .buttons {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .mode-btn {
+            background: #3d7945;
+            border: none;
+            color: white;
+            font-size: 28px;
+            font-weight: bold;
+            padding: 20px 50px;
+            border-radius: 70px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border-bottom: 8px solid #235f2b;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .mode-btn:hover {
+            transform: translateY(-3px);
+            background: #529e5e;
+            border-bottom-width: 11px;
+        }
+        .mode-btn.defense {
+            background: #c65353;
+            border-bottom-color: #722b2b;
+        }
+        .mode-btn.defense:hover {
+            background: #d46b6b;
+        }
+        .mode-btn.attack {
+            background: #226177;
+            border-bottom-color: #0d3c49;
+        }
+        .mode-btn.attack:hover {
+            background: #2d7e9a;
+        }
+        .desc {
+            margin-top: 40px;
+            color: #fff0b5;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+<div class="menu">
+    <h1>⚔️ Тактические приёмы в Clash Royale ⚔️</h1>
+    <div class="buttons">
+        <a href="defense/index.html" class="mode-btn defense">🛡️ РЕЖИМ ЗАЩИТЫ</a>
+        <a href="attack/index.html" class="mode-btn attack">⚡ РЕЖИМ АТАКИ</a>
+    </div>
+    <div class="desc">
+        🔹 Защита – защищайтесь от атак противника!<br>
+        🔹 Атака – атакуйте противника через его построенную оборону!
+    </div>
+</div>
+</body>
+</html>

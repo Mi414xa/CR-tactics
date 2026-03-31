@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clash Royale: АТАКА НА БАШНИ</title>
+    <link rel="stylesheet" href="style_attack.css">
+    <style>
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: #226177;
+            border: none;
+            color: white;
+            font-size: 18px;
+            padding: 10px 20px;
+            border-radius: 50px;
+            border-bottom: 5px solid #0d3c49;
+            cursor: pointer;
+            z-index: 1000;
+            font-family: inherit;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .back-btn:hover {
+            background: #2d7e9a;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+<a href="../index.html" class="back-btn">← В меню</a>
+
+<div class="game-wrapper">
+    <div class="arena" id="arena">
+        <div class="king-tower">
+            👑
+            <div class="tower-hp-bar"><div class="tower-hp-fill" id="kingHpFill"></div></div>
+        </div>
+        <div class="princess-left">
+            🏰
+            <div class="tower-hp-bar"><div class="tower-hp-fill" id="leftPrincessFill"></div></div>
+        </div>
+        <div class="princess-right">
+            🏰
+            <div class="tower-hp-bar"><div class="tower-hp-fill" id="rightPrincessFill"></div></div>
+        </div>
+    </div>
+
+    <div class="enemy-zone" id="enemyZone"></div>
+
+    <div class="deck-panel" id="selectCardsPanel">
+        <div class="cards-row" id="availableCards"></div>
+        <div class="info-box" style="margin-top: 15px; text-align: center;">
+            Сумма эликсира: <span id="totalElixirValue">0</span> / 10
+        </div>
+        <button class="diff-btn" id="attackBtn" disabled style="width: 100%; margin-top: 15px;">⚔️ НАЧАТЬ АТАКУ</button>
+    </div>
+
+    <div class="control-panel">
+        <div class="diff-group" id="scenarioGroup">
+            <button class="diff-btn active" data-scenario="1">🛡️ СЦЕНАРИЙ 1: Мушкетер + Тесла</button>
+            <button class="diff-btn" data-scenario="2">🛡️ СЦЕНАРИЙ 2: Гоблины + Дровосек</button>
+        </div>
+        <div class="info-box" id="elixirDisplay">💜 10/10</div>
+        <button class="reset-btn" id="resetBtn">⟳ НОВАЯ АТАКА</button>
+    </div>
+
+    <div class="deck-panel" id="playerDeckPanel" style="display: none;">
+        <div class="cards-row" id="playerDeck"></div>
+        <div class="info-box" style="margin-top: 15px; text-align: center;">Выберите войско и кликните на клетку (ряды 16–18)</div>
+    </div>
+
+    <div class="message-bar" id="messageBox">⚔️ Выберите 2 карты для атаки</div>
+</div>
+
+<div class="popup" id="popup">
+    <div class="popup-message" id="popupMsg"></div>
+    <div class="popup-sub" id="popupSub"></div>
+    <button class="popup-button" id="popupBtn">ЗАНОВО</button>
+</div>
+
+<script src="js/attackers.js"></script>
+<script src="js/defenders.js"></script>
+<script src="js/towers.js"></script>
+<script src="js/arena.js"></script>
+<script src="js/game.js"></script>
+</body>
+</html>
